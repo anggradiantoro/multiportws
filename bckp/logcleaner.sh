@@ -3,9 +3,18 @@ dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Dat
 biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
 #########################
 
-cd
-MYIP=$(curl -sS ipv4.icanhazip.com)
-NameUser=$(curl -sS https://raw.githubusercontent.com/scvpnme/permission/main/ipmini | grep $MYIP | awk '{print $2}')
+#license
+echo -e "============================================="
+echo -e " ${GREEN} SCRIPT LICENSE${NC}"
+echo -e "============================================="
+sleep 2
+read -p "SILA MASUKKAN LESEN SCRIPT: " pwd
+if test $pwd == "jinggo007"; then
+echo "Password Accepted!"
+else
+echo "Password Incorrect!"
+rm -f setup.sh
+sleep 2
 exit 0
 fi
 
