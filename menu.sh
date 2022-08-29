@@ -30,20 +30,9 @@ CITY=$(curl -s ipinfo.io/city )
 WKT=$(curl -s ipinfo.io/timezone )
 IPVPS=$(curl -s ipv4.icanhazip.com )
 clear
-	echo""
-	cname=$( awk -F: '/model name/ {name=$2} END {print name}' /proc/cpuinfo )
-	cores=$( awk -F: '/model name/ {core++} END {print core}' /proc/cpuinfo )
-	freq=$( awk -F: ' /cpu MHz/ {freq=$2} END {print freq}' /proc/cpuinfo )
-	tram=$( free -m | awk 'NR==2 {print $2}' )
-	swap=$( free -m | awk 'NR==4 {print $2}' )
-	up=$(uptime|awk '{ $1=$2=$(NF-6)=$(NF-5)=$(NF-4)=$(NF-3)=$(NF-2)=$(NF-1)=$NF=""; print }')
-serverV=$( curl -sS https://raw.githubusercontent.com/scvpnme/permission/main/version )
-Exf=$( curl -sS https://raw.githubusercontent.com/scvpnme/permission/main/ipmini | grep $MYIP | awk '{print $3}')
-Name=$(curl -sS https://raw.githubusercontent.com/scvpnme/permission/main/ipmini | grep $MYIP | awk '{print $2}')
-# =========================================
 echo -e ""
 echo -e "\e[36m╒━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╕\033[0m"
-echo -e " \E[44;1;39m        ⇱ AutoScript By KennXV Project ⇲        \E[0m"
+echo -e " \E[44;1;39m        ⇱ AutoScript By bagoesvpn Project ⇲        \E[0m"
 echo -e " \E[44;1;39m            ⇱ Informasi VPS SERVER ⇲            \E[0m"
 echo -e "\e[36m╘━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╛\033[0m"
 echo -e " ⚙️ Cpu Model       : $cname"          
