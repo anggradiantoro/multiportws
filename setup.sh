@@ -123,14 +123,31 @@ sleep 2
 echo -ne "[ ${green}INFO${NC} ] Check perizinan : "
 
 PERMISSION
-if [ -f /home/needupdate ]; then
-red "Proses Script Update!!!"
-exit 0
-elif [ "$res" = "Perizinan Diberikan..." ]; then
-green "Perizinan Diberikan..."
+echo -e "============================================="
+echo -elicense
+echo -e "============================================="
+echo -e " ${GREEN} SCRIPT LICENSE${NC}"
+echo -e "============================================="
+sleep 2
+read -p "SILA MASUKKAN LESEN SCRIPT: " pwd
+if test $pwd == "jinggo007"; then
+echo "Password Accepted!"
 else
-red "Perizinan Ditolak..."
-rm setup.sh > /dev/null 2>&1
+echo "Password Incorrect!"
+rm -f setup.sh
+sleep 2
+exit
+fi
+clear
+ " ${GREEN} SCRIPT LICENSE${NC}"
+echo -e "============================================="
+sleep 2
+read -p "SILA MASUKKAN LESEN SCRIPT: " pwd
+if test $pwd == "bagoesbpn"; then
+echo "Password Accepted!"
+else
+echo "Password Incorrect!"
+rm -f setup.sh
 sleep 10
 exit 0
 fi
