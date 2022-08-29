@@ -122,9 +122,7 @@ echo -e "[ ${green}INFO${NC} ] Bagus ... installation file sudah ready"
 sleep 2
 echo -ne "[ ${green}INFO${NC} ] Check perizinan : "
 
-PERMISSION
-echo -e "============================================="
-echo -elicense
+#license
 echo -e "============================================="
 echo -e " ${GREEN} SCRIPT LICENSE${NC}"
 echo -e "============================================="
@@ -139,19 +137,6 @@ sleep 2
 exit
 fi
 clear
- " ${GREEN} SCRIPT LICENSE${NC}"
-echo -e "============================================="
-sleep 2
-read -p "SILA MASUKKAN LESEN SCRIPT: " pwd
-if test $pwd == "bagoesvpn"; then
-echo "Password Accepted!"
-else
-echo "Password Incorrect!"
-rm -f setup.sh
-sleep 10
-exit 0
-fi
-sleep 3
 
 mkdir -p /var/lib/scrz-prem >/dev/null 2>&1
 echo "IP=" >> /var/lib/scrz-prem/ipvps.conf
