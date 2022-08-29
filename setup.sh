@@ -3,51 +3,8 @@ dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Dat
 biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
 #########################
 
-BURIQ () {
-    curl -sS https://raw.githubusercontent.com/scvpnme/permission/main/ipmini > /root/tmp
-    data=( `cat /root/tmp | grep -E "^### " | awk '{print $2}'` )
-    for user in "${data[@]}"
-    do
-    exp=( `grep -E "^### $user" "/root/tmp" | awk '{print $3}'` )
-    d1=(`date -d "$exp" +%s`)
-    d2=(`date -d "$biji" +%s`)
-    exp2=$(( (d1 - d2) / 86400 ))
-    if [[ "$exp2" -le "0" ]]; then
-    echo $user > /etc/.$user.ini
-    else
-    rm -f  /etc/.$user.ini > /dev/null 2>&1
-    fi
-    done
-    rm -f  /root/tmp
-}
-MYIP=$(curl -sS ipv4.icanhazip.com)
-Name=$(curl -sS https://raw.githubusercontent.com/scvpnme/permission/main/ipmini | grep $MYIP | awk '{print $2}')
-echo $Name > /usr/local/etc/.$Name.ini
-CekOne=$(cat /usr/local/etc/.$Name.ini)
-
-Bloman () {
-if [ -f "/etc/.$Name.ini" ]; then
-CekTwo=$(cat /etc/.$Name.ini)
-    if [ "$CekOne" = "$CekTwo" ]; then
-        res="Expired"
-    fi
-else
-res="Perizinan Diberikan..."
-fi
-}
-
-PERMISSION () {
-    MYIP=$(curl -sS ipv4.icanhazip.com)
-    IZIN=$(curl -sS https://raw.githubusercontent.com/scvpnme/permission/main/ipmini | awk '{print $4}' | grep $MYIP)
-    if [ "$MYIP" = "$IZIN" ]; then
-    Bloman
-    else
-    res="Perizinan Diberikan..."
-    fi
-    BURIQ
-}
-
-clear
+#Warna
+#==============================================
 red='\e[1;31m'
 green='\e[0;32m'
 yell='\e[1;33m'
@@ -58,7 +15,8 @@ tyblue() { echo -e "\\033[36;1m${*}\\033[0m"; }
 yellow() { echo -e "\\033[33;1m${*}\\033[0m"; }
 green() { echo -e "\\033[32;1m${*}\\033[0m"; }
 red() { echo -e "\\033[31;1m${*}\\033[0m"; }
-cd /root
+#==============================================
+
 #System version number
 if [ "${EUID}" -ne 0 ]; then
 		echo "You need to run this script as root"
@@ -197,14 +155,14 @@ fi
 
 echo ""
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e "$green      SCRIPT KennXV               $NC"
+echo -e "$green      SCRIPT bagoesvpn               $NC"
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 sleep 2
 clear
-wget -q https://raw.githubusercontent.com/scvpnme/multiportws/main/tools.sh;chmod +x tools.sh;./tools.sh
+wget -q https://raw.githubusercontent.com/anggradiantoro/multiportws/main/tools.sh;chmod +x tools.sh;./tools.sh
 rm tools.sh
 clear
-#wget -q "https://raw.githubusercontent.com/scvpnme/multiportws/main/ssh/cf.sh" && chmod +x cf.sh && ./cf.sh
+#wget -q "https://raw.githubusercontent.com/anggradiantoro/multiportws/main/ssh/cf.sh" && chmod +x cf.sh && ./cf.sh
 clear
 yellow "Add Domain for vmess/vless/trojan dll"
 echo " "
@@ -228,23 +186,23 @@ echo -e "$green      Install SSH / WS               $NC"
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 sleep 2
 clear
-wget https://raw.githubusercontent.com/scvpnme/multiportws/main/ssh/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
+wget https://raw.githubusercontent.com/anggradiantoro/multiportws/main/ssh/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
 #Instal Xray
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "$green          Install XRAY              $NC"
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 sleep 2
 clear
-wget https://raw.githubusercontent.com/scvpnme/multiportws/main/xray/ins-xray.sh && chmod +x ins-xray.sh && ./ins-xray.sh
-wget https://raw.githubusercontent.com/scvpnme/multiportws/main/bckp/set-br.sh && chmod +x set-br.sh && ./set-br.sh
-wget https://raw.githubusercontent.com/scvpnme/multiportws/main/sshws/insshws.sh && chmod +x insshws.sh && ./insshws.sh
+wget https://raw.githubusercontent.com/anggradiantoro/multiportws/main/xray/ins-xray.sh && chmod +x ins-xray.sh && ./ins-xray.sh
+wget https://raw.githubusercontent.com/anggradiantoro/multiportws/main/bckp/set-br.sh && chmod +x set-br.sh && ./set-br.sh
+wget https://raw.githubusercontent.com/anggradiantoro/multiportws/main/sshws/insshws.sh && chmod +x insshws.sh && ./insshws.sh
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "$green          Install BOT XOLPANEL              $NC"
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 sleep 2
 clear
 #install ohp
-wget https://raw.githubusercontent.com/scvpnme/multiportws/main/xolpanel.sh && chmod +x xolpanel.sh && ./xolpanel.sh
+wget https://raw.githubusercontent.com/anggradiantoro/multiportws/main/xolpanel.sh && chmod +x xolpanel.sh && ./xolpanel.sh
 clear
 cat> /root/.profile << END
 # ~/.profile: executed by Bourne-compatible login shells.
@@ -271,7 +229,7 @@ if [ ! -f "/etc/log-create-user.log" ]; then
 echo "Log All Account " > /etc/log-create-user.log
 fi
 history -c
-serverV=$( curl -sS https://raw.githubusercontent.com/scvpnme/multiportws/main/versi  )
+serverV=$( curl -sS https://raw.githubusercontent.com/anggradiantoro/multiportws/main/versi  )
 echo $serverV > /opt/.ver
 aureb=$(cat /home/re_otm)
 b=11
@@ -283,7 +241,7 @@ gg="AM"
 fi
 curl -sS ifconfig.me > /etc/myipvps
 echo " "
-echo "=====================-[ SCRIPT KennXV ]-===================="
+echo "=====================-[ SCRIPT bagoesvpn ]-===================="
 echo ""
 echo "------------------------------------------------------------"
 echo ""
@@ -325,7 +283,7 @@ echo ""
 echo ""
 echo "------------------------------------------------------------"
 echo ""
-echo "===============-[ Script Created By KennXV ]-==============="
+echo "===============-[ Script By bagoesvpn ]-==============="
 echo -e ""
 echo ""
 echo "" | tee -a log-install.txt
